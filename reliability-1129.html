@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min 1.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 3000px;height:1000px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+// 基于准备好的dom，初始化echarts实例  
+var myChart = echarts.init(document.getElementById('main'));  
+
+
+var data = [  
+
+
+            // {time: '2023-09-17', value: 22, text:"ceph osd down with cephfs load test", color: "red"},
+            // {time: '2023-09-18',value: 25, text:"ceph osd down with cephfs load test", color: "red"},
+            // {time: '2023-09-19', value: 19, text:"if down ifup svm, ceph osd down", color: "green"},
+            // {time: '2023-09-19', value: 23, text:"cephfs load test one svm cannot be connected", color: "green"},
+            // {time: '2023-09-20'},
+            // {time: '2023-09-21'},
+            // {time: '2023-09-22', value: 20, text:"【MEC高可用】单节点物理机断网后，ceph svm发生重启且无法恢复", color: "green"},
+
+            // {time: '2023-10-07', value: 23, text:"【MEC高可用】节点详情页，node状态不正确", color: "green"},
+            // {time: '2023-10-07', value: 19, text:"【MEC高可用】关机node-1 近一个小时后，有21个pod仍是running", color: "green"},
+            // {time: '2023-10-07', value: 11, text:"[MEC高可用】拔网线后，有30+个pod重建失败", color: "green"},
+            // {time: '2023-10-08'},
+            // {time: '2023-10-09'},
+            // {time: '2023-10-10'},
+            // {time: '2023-10-11'},
+            // {time: '2023-10-12', value: 20, text:"ceph osd down test", color: "green"},
+            // {time: '2023-10-13', value: 10, text:"ceph osd down test", color: "green"},
+{time: '2023-11-24', value: 13,  text:"  LMP-15655 多个平台组件被反复删除重建  In Dev    Major", color: "red" },
+{time: '2023-11-24', value: 9,  text:"  LMP-15654 rabbitmq中存储写满  Resolved    Major", color: "green" },
+{time: '2023-11-23', value: 18,  text:"  LMP-15653 waf配置文件内容缺失  Resolved    Major", color: "green" },
+{time: '2023-11-23', value: 16,  text:"  LMP-15652 osd没有自动均衡  Closed  Major", color: "green" },
+{time: '2023-11-13', value: 14,  text:"  LMP-15569 node融合网恢复后，node代理心跳中断未恢复  Resolved    Major", color: "green" },
+{time: '2023-11-13', value: 12,  text:"  LMP-15564 node-1断网2天，恢复网络后，svm未能自动开机  In Dev    Major", color: "red" },
+{time: '2023-11-13', value: 10,  text:"  LMP-15563 断掉edge-sds所在node的融合网后，ceph osd无法拉起  Resolved    Major", color: "green" },
+{time: '2023-11-10', value: 17,  text:"  LMP-15562 建议ceph告警内容优化  Resolved    Normal", color: "green" },
+{time: '2023-11-09', value: 15,  text:"  LMP-15556 node关机后，jet-nats-leaf未迁移  Resolved    Major", color: "green" },
+{time: '2023-11-09', value: 11,  text:"  LMP-15555 CMO告警有误报  Resolved    Major", color: "green" },
+{time: '2023-11-09', value: 9,  text:"  LMP-15554 关机node再开机，harbor-edge-imgsvr/harbor-imgsvr起不来  Resolved    Major", color: "green" },
+{time: '2023-10-27', value: 13,  text:"  LMP-15491 ceph达到82.56%，MEC不可用  Open    Major", color: "green" },
+{time: '2023-10-26', value: 11,  text:"  LMP-15489 物理节点进入维护模式，其上运行的高可用vm未迁移  Resolved   Major", color: "green" },
+{time: '2023-10-26', value: 22,  text:"  LMP-15488 部署应用失败，前端接口报错502   Resolved   Major" , color: "green" },
+{time: '2023-10-26', value: 20,  text:"  LMP-15485 断网node-1（4根）后恢复，svm-node-1启动失败  Resolved   Major" , color: "green" },
+{time: '2023-10-26', value: 11.5,  text:"  LMP-15468 停止kube-system下的服务，服务自动拉起成功后，CMO告警未消除   Resolved  Major" , color: "green" },
+{time: '2023-10-26', value: 14,  text:"  LMP-15467 停止kube-system下的相关服务后，nvidia-driver-vgpu服务未自动拉起成功  Resolved  Major" , color: "green" },
+{time: '2023-10-25', value: 21,  text:"  LMP-15462 整集群关机再开机后，有一个vm关机且无法再开机  In Dev  Major" , color: "red" },
+{time: '2023-10-25', value: 17,  text:"  LMP-15460 当节点故障后，多个服务迁移失败 Resolved Major(cannot repro)" , color: "green" },
+{time: '2023-10-25', value: 10,  text:"  LMP-15450 node-3关机再开机，svm-node-3无法启动 Open    Major" , color: "green" },
+{time: '2023-10-24', value: 16,  text:"  LMP-15446 vm里造内核无响应/cpu无响应/内存无响应故障，vm没有重启  Resolved  Major" , color: "green" },
+{time: '2023-10-24', value: 15,  text:"  LMP-15444 mec没有告警  Closed  Major" , color: "green" },
+{time: '2023-10-23', value: 19.5,  text:"  LMP-15441 node-2断掉全部存储网后，恢复网络，MEC前端仍打不开  Resolved  Major" , color: "green" },
+{time: '2023-10-23', value: 18,  text:"  LMP-15440 node断掉全部存储网后，该node上的pod未迁移 Open Major" , color: "green" },
+{time: '2023-10-23', value: 15.5,  text:"  LMP-15428 关机node-1后，MEC告警无数据  Resolved  Major" , color: "green" },
+{time: '2023-10-23', value: 14.5,  text:"  LMP-15427 关机node-1后，lecp-mec证书报错  Resolved  Major" , color: "green" },
+{time: '2023-10-23', value: 12.5,  text:"  LMP-15424 关机node-1后，register-client迁移到node-2成功，但CMO始终显示MEC离线  Resolved   Major" , color: "green" },
+{time: '2023-10-22'},
+{time: '2023-10-21'},
+{time: '2023-10-20', value: 13.5,  text:" LMP-15395	ceph mgr服务故障后，未自动拉起	Closed	Major " , color: "green" },
+{time: '2023-10-19', value: 13,  text:" LMP-15380	ceph osd服务\mds服务故障后，未自动拉起	Closed	Major " , color: "green" },
+{time: '2023-10-18', value: 12,  text:" LMP-15365	断网恢复，mon.a出现down	Closed	Major " , color: "green" },
+{time: '2023-10-17'},
+{time: '2023-10-16'},
+{time: '2023-10-15'},
+{time: '2023-10-14'},
+{time: '2023-10-13', value: 22,  text:"  LMP-15277 正常关机后再开机/断掉所在node的2根存储网后，mec-appmanager启动失败 Resolved   Major" , color: "green" },
+{time: '2023-10-13', value: 20,  text:"  LMP-15276 正常关机断电后再开机，CMO告警未消除  Closed  Normal" , color: "green" },
+{time: '2023-10-13', value: 20.5,  text:"  LMP-15275 正常关机后再开机，isddc和logging下部分pod启动失败 Resolved Major" , color: "green" },
+{time: '2023-10-13', value: 18,  text:"  LMP-15273 断网恢复后，部分vm无法开机  Closed  Major" , color: "green" },
+{time: '2023-10-13', value: 15,  text:"  LMP-15258 bond 网络告警时间延迟   Closed  Normal" , color: "green" },
+{time: '2023-10-13', value: 17,  text:"  LMP-15256 bond网络恢复后，告警未消除 Closed  Major" , color: "green" },
+{time: '2023-10-13', value: 18,  text:"  LMP-15254 断掉node的1个storagebond，CMO没有告警 Closed  Major" , color: "green" },
+{time: '2023-10-13', value: 11.5,  text:"  LMP-15253 断掉node-2融合网，其上vm仍是运行中，且无法进入控制台   Closed  Major" , color: "green" },
+{time: '2023-10-12', value: 12,  text:"  LMP-15227 设置维护模式失败  Closed  Major" , color: "green" },
+{time: '2023-10-12', value: 11,  text:"  LMP-15224 cloud-edge-system服务挂掉，CMO无告警 Closed  Normal", color: "green"  },
+{time: '2023-10-12', value: 10.5,  text:"  LMP-15223 ceph svm无法启动  In Dev  Normal" , color: "green" },
+{time: '2023-10-11', value: 18,  text:"  LMP-15216 node断掉全部存储网后，该node上的ha vm未迁移，且不可用  In Dev  Major" , color: "green" },
+{time: '2023-10-11', value: 16.5,  text:"  LMP-15203 mec ceph内存free是0，cmo没有告警 Closed  Major" , color: "green" },
+{time: '2023-10-10', value: 22.5,  text:"  LMP-15191 物理节点进入维护模式，其上运行的高可用vm业务有中断  Resolved        Major" , color: "green" },
+{time: '2023-10-10', value: 21,  text:"  LMP-15190 kill掉chrony服务， 没自动拉起  Closed  Major" , color: "green" },
+{time: '2023-10-10', value: 15.5,  text:"  LMP-15155 后台出现rpc error 导致 web的ip不通 Closed  Major" , color: "green" },
+{time: '2023-10-09', value: 21.5,  text:"  LMP-15150 关机node后，该node上的ha vm迁移时间约8分钟   Closed  Major" , color: "green" },
+{time: '2023-10-09', value: 16,  text:"  LMP-15128 关机node-1再开机后，isddc-notification和isddc-persister反复重启 Closed  Major" , color: "green" },
+{time: '2023-10-09', value: 14.2,  text:"  LMP-15121 服务恢复后，告警没有消除   Closed  Major" , color: "green" },
+{time: '2023-10-09', value: 14.6,  text:"  LMP-15120 关机pod所在node/断掉该node的2根融合网后，harbor相关服务迁移失败  In Dev  Major" , color: "green" },
+{time: '2023-10-09', value: 13.6,  text:"  LMP-15119	platform-prometheus固定重启3次后才成功	Resolved	Normal" , color: "green" },
+{time: '2023-10-09', value: 10,  text:"  LMP-15118 关机node-2后，多个服务不可用，但MEC没有相应告警Closed  Major" , color: "green" },
+{time: '2023-10-09', value: 13.2,  text:"  LMP-15117 关机node-2后，多个服务不可用，但CMO没有相应告警  Resolved Major" , color: "green" },
+{time: '2023-10-09', value: 12.9,  text:"  LMP-15113 关机node-2后，logging下的pod迁移失败 Closed  Major" , color: "green" },
+{time: '2023-10-09', value: 11.5,  text:"  LMP-15110 关机node-2后，mysql等isddc下的pod迁移失败  Closed Critical" , color: "green" },
+{time: '2023-10-09', value: 12.5,  text:"  LMP-15109 关机node-2后，minio迁移到node-1失败 Closed  Major" , color: "green" },
+{time: '2023-10-08', value: 20,  text:"  LMP-15097 默认路由丢失  Closed  Normal" , color: "green" },
+{time: '2023-10-08', value: 18.5,  text:"  LMP-15095 两个存储虚拟机故障，第三个存储虚拟机上命令无响应  Closed  Major" , color: "green" },
+{time: '2023-10-08', value: 11,  text:"  LMP-15076 拔网线后，有30+个pod重建失败  Closed  Major" , color: "green" },
+{time: '2023-10-07', value: 19,  text:"  LMP-15075 关机node-1 近一个小时后，有21个pod仍是running Closed  Major" , color: "green" },
+{time: '2023-10-07', value: 17.5,  text:"  LMP-15074 节点详情页，node状态不正确 Closed  Major" , color: "green" },
+{time: '2023-09-30'},
+{time: '2023-09-29'},
+{time: '2023-09-28'},
+{time: '2023-09-27'},
+{time: '2023-09-26'},
+{time: '2023-09-25'},
+{time: '2023-09-24'},
+{time: '2023-09-23'},
+{time: '2023-09-22', value: 18,  text:"  LMP-14902单节点物理机断网后，cephsvm重启且无法恢复 Closed Critical" , color: "green" },
+{time: '2023-09-22', value: 14,  text:"  LMP-14901	单节点物理机断网后，读写ceph的业务中断	Verified	Major" , color: "green" },
+{time: '2023-09-22', value: 20,  text:"  LMP-14897	ceph拔盘后osd无法恢复	Closed	Critical" , color: "green" },
+{time: '2023-09-22', value: 10,  text:"  LMP-14896	ceph osd服务故障/恢复后，业务有中断	Resolved	Major" , color: "green" },
+{time: '2023-09-22', value: 11.,  text:"  LMP-14895	ceph单点故障（关机）/恢复（开机）后，业务有中断	Resolved	Major" , color: "green" },
+{time: '2023-09-22', value: 16,  text:"  LMP-14894	ceph单点网络故障/恢复后，业务有中断	Resolved	Major" , color: "green" },
+{time: '2023-09-21', value: 20.5,  text:"  LMP-14892	掉盘恢复后，osd仍down	Closed	Major" , color: "green" },
+{time: '2023-09-21', value: 11.5,  text:"  LMP-14889	vm热迁移用时17分钟	Closed	Major" , color: "green" },
+{time: '2023-09-21', value: 19,  text:"  LMP-14880	（偶现）虚拟机重启后，网卡up较慢	Closed	Normal" , color: "green" },
+{time: '2023-09-21', value: 13,  text:"  LMP-14872	vm中文件丢失	Closed	Major" , color: "green" },
+{time: '2023-09-21', value: 17,  text:"  LMP-14867	重启后虚拟机ip丢失	Closed	Major" , color: "green" },
+{time: '2023-09-20', value: 17.5,  text:"  LMP-14863	ceph-1\ceph-2时间不对	Closed	Critical" , color: "green" },
+{time: '2023-09-19', value: 15.5,  text:"  LMP-14862	部分ceph的getenforce是Permissive	Closed	Normal" , color: "green" },
+{time: '2023-09-19', value: 15,  text:"  LMP-14860	断ceph-2的网络30秒，网络恢复后，osd.8仍down	Closed	Major" , color: "green" },
+
+
+            
+            
+           
+
+         ];  
+var dates = data.map(function(item) { return item.date; });  
+var values = new Array(dates.length).fill(null);
+// 指定图表的配置项和数据  
+var option = {  
+    dataZoom: [{  // 这个dataZoom配置是x轴上的，也就是水平方向上的。  
+        type: 'slider',  // 这个 dataZoom 组件的类型。取值应为 'slider'  
+        start: 0,      // 左边在 10% 的位置。  
+        end: 100          // 右边在 60% 的位置。  
+    }],  
+    title: {  
+        text: '三节点 MEC+CEPH商用评估',  
+        subtext: '可靠性问题统计',  
+        left: 'center',  
+        textStyle: {  
+            color: '#333'  
+        }  
+    },  
+    grid: {  
+        left: '3%',  
+        right: '10%',  
+        bottom: '20%',  
+        containLabel: true  
+    },  
+    legend: {  
+        
+        right: '20%',  
+        bottom: '93%',  
+        orient: 'horizontal',  //horizonal
+        left: 'right',  
+        data: ['Open', 'Closed','Need reproduce'],  
+    },  
+    xAxis: {  
+                type: 'time',  
+                min: '2023-09-19',
+                    splitLine: {  
+                    show: true,
+                    lineStyle: { // 线条相关设置  
+                    color: '#eee', // 线条颜色  
+                    type: 'dashed'  // 设置为虚线  
+            }  
+                },  
+                axisLabel: {  
+                    interval: 1, // 强制显示所有刻度     
+                    rotate: 45,
+                    formatter: function (time) {  
+                        return echarts.format.formatTime('yyyy-MM-dd', time);  
+                    }  
+                }  
+                
+                
+            },   
+    yAxis: {  
+        
+        type: 'value', // 值轴，最大值为24:00  
+        min: 9, // 设置最大值  
+        max: 24, // 设置最大值  
+        interval: 1,  
+        
+        axisLabel: { // 这里也可以设置纵坐标的格式  
+            formatter: function (value) {  
+                return value + ':00'; // 在值后面添加冒号和两个零  
+            }  
+            
+        }  ,
+        splitLine: { // 网格线相关设置  
+            
+            lineStyle: { // 线条相关设置  
+                color: '#eee', // 线条颜色  
+                type: 'dashed'  // 设置为虚线  
+            }  
+            
+        }  
+    },  
+    series: [
+        
+        {
+              
+         
+        name: 'Open',  
+        color: 'red',
+      
+        data: data.map(function(item) {  
+                    return [item.time, item.value,item.text,item.color];  
+                }),
+        //data: data.map(item => ({value: [item.value, item.text], itemStyle: {normal: {color: item.color}}})),
+        type: 'scatter', // 散点图，也可以是 line, bar, pie, tower, map, K线图等更多类型，  
+        label: {  
+            show: true, // 是否显示标签  
+            position: 'right', // 标签的位置，可选值：'top'、'left'、'right'、'bottom'、'inside'、'insideTop'、'insideLeft'、'insideRight'、'insideBottom'、'insideTopLeft'、'insideTopRight'、'insideBottomLeft'、'insideBottomRight'  
+            formatter: function (item) {  
+                return item.value[2]; // 在散点上添加文本  
+            }  ,
+           
+        } ,
+        itemStyle: {  
+            color: function(item) {  
+                // 根据点的值改变颜色  
+                console.log("tessssssssssss");
+
+                return item.value[3];  
+                
+                
+            }  
+        }  
+         
+ 
+        
+    },
+  
+    {  
+        name: 'Closed',          
+        color: 'green',
+      
+      data: data.map(function(item) {  
+                  return [item.time, item.value,item.text,item.color];  
+              }),
+      //data: data.map(item => ({value: [item.value, item.text], itemStyle: {normal: {color: item.color}}})),
+      type: 'scatter', // 散点图，也可以是 line, bar, pie, tower, map, K线图等更多类型，  
+      label: {  
+          show: true, // 是否显示标签  
+          position: 'right', // 标签的位置，可选值：'top'、'left'、'right'、'bottom'、'inside'、'insideTop'、'insideLeft'、'insideRight'、'insideBottom'、'insideTopLeft'、'insideTopRight'、'insideBottomLeft'、'insideBottomRight'  
+          formatter: function (item) {  
+              return item.value[2]; // 在散点上添加文本  
+          }  ,
+         
+      } ,
+      itemStyle: {  
+          color: function(item) {  
+              // 根据点的值改变颜色  
+              console.log("tessssssssssss");
+
+              return item.value[3];  
+              
+              
+          }  
+      }  
+                 
+    },
+        
+    {  // 设置数据和图表类型  
+        name: 'Need reproduce',  // 设置图表名称  
+        type: 'scatter',  // 设置图表类型为柱状图  
+     
+                    color: 'orange', // 半透明灰色  
+                
+        barWidth: '15px',  // 设置柱子宽度为固定20px  
+        
+     
+        
+          
+    },
+        
+    // },
+    {  // 设置数据和图表类型  
+        name: '数据1',  // 设置图表名称  
+        type: 'bar',  // 设置图表类型为柱状图  
+     
+                    color: 'rgba(245,245,245, 0.5)', // 半透明灰色  
+                
+        barWidth: '15px',  // 设置柱子宽度为固定20px  
+        
+     
+        data: data.map(function(item) {  
+                  return [item.time, 24];  
+              }),
+          
+    }
+
+ 
+]
+  
+};  
+  
+// 使用刚指定的配置项和数据显示图表。  
+myChart.setOption(option);
+</script>
+</body>
+</html>
+
+
+
+
